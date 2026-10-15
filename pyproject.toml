@@ -1,0 +1,20 @@
+[project]
+name = "viaje-medida"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "ibrahim", email = "alvarezibrahim94@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "flask>=3.0.0",
+    "flask-wtf>=1.3.0"
+]
+
+[project.scripts]
+viaje-medida = "viaje_medida:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
