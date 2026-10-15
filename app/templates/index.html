@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Viaje Medida{% endblock %}</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('destinations') }}">Destinos</a></li>
+            <li><a href="{{ url_for('activities') }}">Actividades</a></li>
+            <li><a href="{{ url_for('accommodations') }}">Alojamientos</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+{% block title %}Destinos{% endblock %}
+
+{% block content %}
+<h1>Destinos</h1>
+<ul>
+    {% for destination in destinations %}
+    <li>
+        <strong>
+            <a href="{{ url_for('data_destination', destination_id=destination.id) }}">
+
+            </a>
+        </strong>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
