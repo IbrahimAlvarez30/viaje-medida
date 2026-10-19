@@ -103,3 +103,7 @@ accommodations = [
         "pets_allowed": False,
     },
 ]
+
+
+def contar_alojamientos():
+    return len(accommodations)

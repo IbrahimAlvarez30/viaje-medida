@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Inicio · Tu Viaje a Medida{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Tu viaje, a tu medida</h1>
+    <p>Somos una agencia especializada en experiencias personalizadas.
+        Seleccionamos destinos, alojamientos y excursiones para que
+        solo tengas que preocuparte de disfrutar.</p>
+    <a class="boton" href="{{ url_for('acerca') }}">Conócenos</a>
+    {# Cambiar por url_for('listado_destinos') cuando exista #}
+</section>
+
+<section class="resumen">
+    <h2>Nuestra oferta actual</h2>
+    <div class="contadores">
+        <div class="tarjeta">
+            <span class="numero">{{ total_destinos }}</span>
+            <span class="etiqueta">Destinos</span>
+        </div>
+        <div class="tarjeta">
+            <span class="numero">{{ total_alojamientos }}</span>
+            <span class="etiqueta">Alojamientos</span>
+        </div>
+        <div class="tarjeta">
+            <span class="numero">{{ total_actividades }}</span>
+            <span class="etiqueta">Actividades</span>
+        </div>
+    </div>
+</section>
+{% endblock %}

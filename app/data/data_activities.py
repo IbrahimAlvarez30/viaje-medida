@@ -93,3 +93,7 @@ activities = [
         "included_items": ["Barra libre de bebidas", "Aperitivos a bordo"],
     },
 ]
+
+
+def contar_actividades():
+    return len(activities)

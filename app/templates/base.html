@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mi APP{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Tu Viaje a Medida{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
     <header>
-        <h1>Esta es la Cabecera de mi aplicacion</h1>
-
+        <a class="logo" href="{{ url_for('inicio') }}">Tu Viaje a Medida</a>
         <nav>
-            <ul>
-                <li>
-                    <a href="{{ url_for('home') }}">Inicio</a>
-                </li>
-            </ul>
-
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('acerca') }}">Acerca de nosotros</a>
+            {# Añade aquí el resto de enlaces cuando existan sus rutas #}
         </nav>
-        <hr />
     </header>
+
     <main>
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
+
     <footer>
-        <hr />
-        <p>2026&copy;IES Las Galletas</p>
+        <p>&copy; Tu Viaje a Medida · Turismo de calidad y experiencias personalizadas</p>
     </footer>
 </body>
 

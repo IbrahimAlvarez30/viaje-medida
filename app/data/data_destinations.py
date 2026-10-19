@@ -35,3 +35,7 @@ destinations = [
         "additional_advice": "La moneda es el peso mexicano, aunque aceptan dólares en casi todas las zonas turísticas.",
     },
 ]
+
+
+def contar_destinos():
+    return len(destinations)
