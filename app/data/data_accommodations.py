@@ -107,3 +107,18 @@ accommodations = [
 
 def contar_alojamientos():
     return len(accommodations)
+
+
+def obtener_alojamientos():
+    return accommodations
+
+
+def obtener_alojamiento_por_id(acc_id):
+    for item in accommodations:
+        if item["id"] == acc_id:
+            return item
+    return None
+
+
+def obtener_alojamientos_por_destino(destino_id):
+    return [item for item in accommodations if item["destination_id"] == destino_id]

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Listado General de Actividades</h1>
+<ul>
+    {% for actividad in actividades %}
+    <li>
+        <a href="{{ url_for('detalle_actividad', actividad_id=actividad.id) }}">{{ actividad.name }}</a> - Destino: {{
+        actividad.destination_name }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
