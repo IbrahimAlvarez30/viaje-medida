@@ -39,3 +39,7 @@ destinations = [
 
 def contar_destinos():
     return len(destinations)
+
+
+def obtener_destinos():
+    return destinations
