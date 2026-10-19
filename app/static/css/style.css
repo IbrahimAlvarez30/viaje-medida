@@ -70,3 +70,91 @@ footer {
     font-weight: bold;
     color: #0b5d7a;
 }
+
+/* --- Estilos para Formularios y Búsquedas (Punto 4) --- */
+.form-busqueda {
+    background: #f0f4f6;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: grid;
+    gap: 1.2rem;
+}
+
+.form-busqueda h3 {
+    margin-top: 0;
+    color: #0b5d7a;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.campo-form label {
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.campo-form input[type="text"],
+.campo-form input[type="number"],
+.campo-form select {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.campo-check {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.campo-check input {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Resultados de búsqueda */
+.resultados-lista {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.tarjeta-resultado {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 1.2rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tarjeta-resultado a {
+    color: #0b5d7a;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.tarjeta-resultado a:hover {
+    text-decoration: underline;
+}
+
+.mensaje-vacio {
+    text-align: center;
+    padding: 2rem;
+    background: #f9fbfb;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    color: #666;
+}

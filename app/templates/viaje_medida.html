@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Asistente de Viaje a Medida{% endblock %}
+
+{% block content %}
+<h2>Asistente de "Viaje a Medida"</h2>
+<p>Encuentra la combinación perfecta de Destino y Alojamiento adaptada a todos tus requisitos.</p>
+
+<form method="GET" action="{{ url_for('viaje_a_medida') }}" class="form-busqueda">
+    <h3>1. Tus preferencias de Destino</h3>
+    <div class="campo-form">
+        {{ form.entorno.label }}
+        {{ form.entorno() }}
+    </div>
+    <div class="campo-form campo-check">
+        {{ form.sin_visado() }}
+        {{ form.sin_visado.label }}
+    </div>
+
+    <h3>2. Tus exigencias de Alojamiento</h3>
+    <div class="campo-form">
+        {{ form.tipo_alojamiento.label }}
+        {{ form.tipo_alojamiento() }}
+    </div>
+    <div class="campo-form">
+        {{ form.precio_max.label }}
+        {{ form.precio_max() }}
+    </div>
+    <div class="campo-form campo-check">
+        {{ form.desayuno() }}
+        {{ form.desayuno.label }}
+    </div>
+
+    <button type="submit" class="boton">Buscar Combinaciones Válidas</button>
+</form>
+
+<h3>Combinaciones Encontradas</h3>
+{% if busqueda_realizada %}
+{% if combinaciones %}
+<ul class="resultados-lista">
+    {% for item in combinaciones %}
+    <li class="tarjeta-resultado">
+        <div>
+            <strong>Destino:</strong> {{ item.destino.nombre }} |
+            <strong>Alojamiento:</strong> {{ item.alojamiento.nombre }}
+            <span>({{ item.alojamiento.precio_noche }} €/noche)</span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<div class="mensaje-vacio">
+    <p>Lo sentimos, no hay ninguna combinación de Destino + Alojamiento que cumpla absolutamente todos tus requisitos al
+        mismo tiempo.</p>
+</div>
+{% endif %}
+{% else %}
+<div class="mensaje-vacio">
+    <p>Rellena el formulario superior y pulsa en buscar para ver las recomendaciones personalizadas.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -107,3 +107,21 @@ accommodations = [
 
 def contar_alojamientos():
     return len(accommodations)
+
+
+# Función para el Comparador de Alojamientos
+def filtrar_alojamientos(
+    alojamientos, precio_max=None, tipo=None, desayuno=False, mascotas=False
+):
+    resultados = []
+    for a in alojamientos:
+        if precio_max is not None and a.get("precio_noche", 0) > precio_max:
+            continue
+        if tipo and a.get("tipo") != tipo:
+            continue
+        if desayuno and not a.get("desayuno", False):
+            continue
+        if mascotas and not a.get("mascotas", False):
+            continue
+        resultados.append(a)
+    return resultados
