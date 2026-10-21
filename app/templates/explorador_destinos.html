@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Explorador de Destinos - Tu Viaje a Medida{% endblock %}
+
+{% block content %}
+<h2>Explorador de Destinos</h2>
+<p>Filtra nuestros destinos según el entorno que prefieras y los requisitos de visado.</p>
+
+<form method="GET" action="{{ url_for('explorador_destinos') }}" class="form-busqueda">
+    <div class="campo-form">
+        {{ form.entorno.label }}
+        {{ form.entorno() }}
+    </div>
+
+    <div class="campo-form campo-check">
+        {{ form.sin_visado() }}
+        {{ form.sin_visado.label }}
+    </div>
+
+    <button type="submit" class="boton">Filtrar Destinos</button>
+</form>
+
+<h3>Resultados</h3>
+{% if resultados %}
+<ul class="resultados-lista">
+    {% for destino in resultados %}
+    <li class="tarjeta-resultado">
+        <div>
+            <strong>{{ destino.nombre }}</strong> ({{ destino.pais }}) — <em>Entorno:</em> {{ destino.entorno |
+            capitalize }}
+        </div>
+        <a href="#">Ver detalles</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<div class="mensaje-vacio">
+    <p>No se encontraron destinos que coincidan con los filtros seleccionados.</p>
+</div>
+{% endif %}
+{% endblock %}

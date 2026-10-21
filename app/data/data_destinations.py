@@ -50,3 +50,17 @@ def obtener_destino_por_id(destino_id):
         if item["id"] == destino_id:
             return item
     return None
+
+
+# Función para el Explorador de Destinos
+def filtrar_destinos(destinos, entorno=None, sin_visado=False):
+    resultados = []
+    for d in destinos:
+        if entorno and d.get("entorno") != entorno:
+            continue
+        if (
+            sin_visado and d.get("requiere_visado") is True
+        ):  # Si requiere visado, se omite
+            continue
+        resultados.append(d)
+    return resultados
