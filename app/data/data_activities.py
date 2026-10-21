@@ -97,3 +97,18 @@ activities = [
 
 def contar_actividades():
     return len(activities)
+
+
+def obtener_actividades():
+    return activities
+
+
+def obtener_actividad_por_id(act_id):
+    for item in activities:
+        if item["id"] == act_id:
+            return item
+    return None
+
+
+def obtener_actividades_por_destino(destino_id):
+    return [item for item in activities if item["destination_id"] == destino_id]

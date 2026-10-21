@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="ficha-actividad">
+    <h1>{{ actividad.name }}</h1>
+
+    <p><strong>Descripción:</strong> {{ actividad.description }}</p>
+
+    <ul>
+        <li><strong>Duración aproximada:</strong> {{ actividad.duration_hours }} horas</li>
+        <li><strong>Precio por persona:</strong> {{ actividad.price_per_person }} €</li>
+
+        {# Control de campo opcional para dificultad física #}
+        {% if actividad.difficulty %}
+        <li><strong>Nivel de dificultad física:</strong> {{ actividad.difficulty | capitalize }}</li>
+        {% endif %}
+
+        {# Control de campo opcional para edad mínima #}
+        {% if actividad.min_age %}
+        <li><strong>Edad mínima recomendada:</strong> {{ actividad.min_age }} años</li>
+        {% endif %}
+    </ul>
+
+    <hr>
+
+    {# Enlace directo para consultar el destino donde se realiza la actividad (Sección 5) #}
+    {% if destino %}
+    <p>
+        <a href="{{ url_for('detalle_destino', destino_id=destino.id) }}" class="btn-destino">
+            Ver guía completa de {{ destino.name }}
+        </a>
+    </p>
+    {% endif %}
+
+    <p><a href="{{ url_for('listado_actividades') }}">← Volver al listado general de actividades</a></p>
+</article>
+{% endblock %}

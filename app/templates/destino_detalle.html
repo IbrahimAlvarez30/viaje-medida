@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="ficha-destino">
+    <h1>{{ destino.name }}</h1>
+
+    {# Muestra la imagen solo si el destino dispone de ella (Sección 7.5) #}
+    {% if destino.get('image') %}
+    <img src="{{ url_for('static', filename='images/' + destino.image) }}" alt="{{ destino.name }}"
+        style="max-width: 100%; height: auto;">
+    {% endif %}
+
+    <ul>
+        <li><strong>País:</strong> {{ destino.country }}</li>
+        <li><strong>Entorno natural:</strong> {{ destino.environment | capitalize }}</li>
+        <li><strong>Mejor época para viajar:</strong> {{ destino.high_season | capitalize }}</li>
+        <li>
+            <strong>Requisitos de visado:</strong>
+            {{ "Sí, requiere visado obligatorio para entrar" if destino.visa_required else "No requiere visado previo"
+            }}
+        </li>
+        {% if destino.additional_advice %}
+        <li><strong>Consejo para el viajero:</strong> {{ destino.additional_advice }}</li>
+        {% endif %}
+    </ul>
+
+    <hr>
+
+    {# Apartado de Alojamientos asociados al destino #}
+    <h2>Alojamientos disponibles en {{ destino.name }}</h2>
+    {% if alojamientos %}
+    <ul>
+        {% for alojamiento in alojamientos %}
+        <li>
+            <a href="{{ url_for('detalle_alojamiento', alojamiento_id=alojamiento.id) }}">
+                {{ alojamiento.name }}
+            </a>
+            - {{ alojamiento.type | capitalize }}
+            ({{ alojamiento.price_per_night }} €/noche)
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p><em>Actualmente no tenemos alojamientos propios contratados en este destino.</em></p>
+    {% endif %}
+
+    {# Apartado de Actividades asociadas al destino #}
+    <h2>Actividades disponibles en {{ destino.name }}</h2>
+    {% if actividades %}
+    <ul>
+        {% for actividad in actividades %}
+        <li>
+            <a href="{{ url_for('detalle_actividad', actividad_id=actividad.id) }}">
+                {{ actividad.name }}
+            </a>
+            - {{ actividad.duration_hours }}h
+            ({{ actividad.price_per_person }} €/persona)
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p><em>Actualmente no ofrecemos actividades propias en este destino.</em></p>
+    {% endif %}
+
+    <br>
+    <p><a href="{{ url_for('listado_destinos') }}">← Volver al listado general de destinos</a></p>
+</article>
+{% endblock %}
