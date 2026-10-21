@@ -13,7 +13,11 @@
         <nav>
             <a href="{{ url_for('inicio') }}">Inicio</a>
             <a href="{{ url_for('acerca') }}">Acerca de nosotros</a>
-            {# Añade aquí el resto de enlaces cuando existan sus rutas #}
+            <a href="{{ url_for('listado_destinos') }}">Destinos</a> |
+            <a href="{{ url_for('listado_alojamientos') }}">Alojamientos</a> |
+            <a href="{{ url_for('listado_actividades') }}">Actividades</a>
+            <a href="{{ url_for('explorador_destinos') }}">Explorador de destinos</a>
+            <a href=" {{ url_for('viaje_a_medida') }}">Asistente de viaje a medida</a>
         </nav>
     </header>
     <hr>
