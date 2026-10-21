@@ -41,6 +41,17 @@ def contar_destinos():
     return len(destinations)
 
 
+def obtener_destinos():
+    return destinations
+
+
+def obtener_destino_por_id(destino_id):
+    for item in destinations:
+        if item["id"] == destino_id:
+            return item
+    return None
+
+
 # Función para el Explorador de Destinos
 def filtrar_destinos(destinos, entorno=None, sin_visado=False):
     resultados = []

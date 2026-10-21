@@ -3,27 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Tu Viaje a Medida{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
     <header>
-        <a class="logo" href="{{ url_for('inicio') }}">Tu Viaje a Medida</a>
         <nav>
             <a href="{{ url_for('inicio') }}">Inicio</a>
             <a href="{{ url_for('acerca') }}">Acerca de nosotros</a>
-            <a href="{{ url_for('explorador_destinos') }}">Explorador de destinos</a>
-            <a href=" {{ url_for('viaje_a_medida') }}">Asistente de viaje a medida</a>
+            {# Añade aquí el resto de enlaces cuando existan sus rutas #}
         </nav>
     </header>
-
+    <hr>
     <main>
         {% block content %}{% endblock %}
     </main>
-
     <footer>
+        <hr />
         <p>&copy; Tu Viaje a Medida · Turismo de calidad y experiencias personalizadas</p>
     </footer>
 </body>

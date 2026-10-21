@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="ficha-alojamiento">
+    <h1>{{ alojamiento.name }}</h1>
+
+    <ul>
+        <li><strong>Tipo de alojamiento:</strong> {{ alojamiento.type | capitalize }}</li>
+        <li><strong>Precio por noche:</strong> {{ alojamiento.price_per_night }} €</li>
+        <li>
+            <strong>Desayuno incluido:</strong>
+            {{ "Sí" if alojamiento.includes_breakfast else "No" }}
+        </li>
+        <li>
+            <strong>Admite mascotas:</strong>
+            {{ "Sí" if alojamiento.pets_allowed else "No" }}
+        </li>
+
+        {# Muestra las estrellas únicamente si existen (Sección 7.5) #}
+        {% if alojamiento.stars %}
+        <li><strong>Categoría:</strong> {{ alojamiento.stars }} estrellas</li>
+        {% endif %}
+
+        {# Muestra detalles extra solo si la propiedad existe #}
+        {% if alojamiento.extra_details %}
+        <li><strong>Servicios destacados:</strong> {{ alojamiento.extra_details }}</li>
+        {% endif %}
+    </ul>
+
+    <hr>
+
+    {# Enlace destacado para regresar a la ficha completa del destino (Sección 5) #}
+    {% if destino %}
+    <p>
+        <a href="{{ url_for('detalle_destino', destino_id=destino.id) }}" class="btn-destino">
+            Ver guía completa de {{ destino.name }}
+        </a>
+    </p>
+    {% endif %}
+
+    <p><a href="{{ url_for('listado_alojamientos') }}">← Volver al listado general de alojamientos</a></p>
+</article>
+{% endblock %}
