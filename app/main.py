@@ -3,11 +3,10 @@ from data.data_destinations import (
     contar_destinos,
     obtener_destinos,
     obtener_destino_por_id,
-    destinations, 
-    filtrar_destinos
+    destinations,
+    filtrar_destinos,
 )
 from data.data_accommodations import (
-    
     contar_alojamientos,
     obtener_alojamientos,
     obtener_alojamiento_por_id,

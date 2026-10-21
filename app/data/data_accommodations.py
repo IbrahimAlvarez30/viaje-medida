@@ -130,13 +130,13 @@ def filtrar_alojamientos(
 ):
     resultados = []
     for a in alojamientos:
-        if precio_max is not None and a.get("precio_noche", 0) > precio_max:
+        if precio_max is not None and a.get("price_per_night", 0) > precio_max:
             continue
-        if tipo and a.get("tipo") != tipo:
+        if tipo and a.get("type") != tipo:
             continue
-        if desayuno and not a.get("desayuno", False):
+        if desayuno and not a.get("breakfast_included", False):
             continue
-        if mascotas and not a.get("mascotas", False):
+        if mascotas and not a.get("pets_allowed", False):
             continue
         resultados.append(a)
     return resultados

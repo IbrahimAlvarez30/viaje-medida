@@ -53,13 +53,13 @@ def obtener_destino_por_id(destino_id):
 
 
 # Función para el Explorador de Destinos
-def filtrar_destinos(destinos, entorno=None, sin_visado=False):
+def filtrar_destinos(destinations, environment=None, visa_required=False):
     resultados = []
-    for d in destinos:
-        if entorno and d.get("entorno") != entorno:
+    for d in destinations:
+        if environment and d.get("environment") != environment:
             continue
         if (
-            sin_visado and d.get("requiere_visado") is True
+            visa_required and d.get("visa_required") is True
         ):  # Si requiere visado, se omite
             continue
         resultados.append(d)
