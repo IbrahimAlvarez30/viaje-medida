@@ -120,14 +120,14 @@ def buscar_viaje_a_medida(
     ids_destinos_validos = {d["id"]: d for d in destinos_filtrados}
 
     for a in alojamientos:
-        destino = ids_destinos_validos.get(a.get("destino_id"))
+        destino = ids_destinos_validos.get(a.get("destination_id"))
         if not destino:
             continue
-        if precio_max is not None and a.get("precio_noche", 0) > precio_max:
+        if precio_max is not None and a.get("price_per_night", 0) > precio_max:
             continue
-        if tipo_alojamiento and a.get("tipo") != tipo_alojamiento:
+        if tipo_alojamiento and a.get("type") != tipo_alojamiento:
             continue
-        if desayuno and not a.get("desayuno", False):
+        if desayuno and not a.get("breakfast_included", False):
             continue
 
         combinaciones_validas.append({"destino": destino, "alojamiento": a})
