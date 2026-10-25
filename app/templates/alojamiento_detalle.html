@@ -1,29 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="ficha-alojamiento">
-    <h1>{{ alojamiento.name }}</h1>
+<article class="ficha-alojamiento detalle">
+    <div class="detalle-hero">
+        {% if alojamiento.get('image') %}
+        <img src="{{ url_for('static', filename='images/' + alojamiento.image) }}" alt="{{ alojamiento.name }}">
+        {% else %}
+        <div class="detalle-hero-sin-imagen">🏨</div>
+        {% endif %}
+        <h1 class="detalle-hero-titulo">{{ alojamiento.name }}</h1>
+    </div>
 
-    <ul>
-        <li><strong>Tipo de alojamiento:</strong> {{ alojamiento.type | capitalize }}</li>
-        <li><strong>Precio por noche:</strong> {{ alojamiento.price_per_night }} €</li>
-        <li>
-            <strong>Desayuno incluido:</strong>
-            {{ "Sí" if alojamiento.includes_breakfast else "No" }}
+    <ul class="detalle-datos">
+        <li class="dato">
+            <span class="dato-etiqueta">Tipo de alojamiento</span>
+            <span class="dato-valor">{{ alojamiento.type | capitalize }}</span>
         </li>
-        <li>
-            <strong>Admite mascotas:</strong>
-            {{ "Sí" if alojamiento.pets_allowed else "No" }}
+        <li class="dato dato-precio">
+            <span class="dato-etiqueta">Precio por noche</span>
+            <span class="dato-valor">{{ alojamiento.price_per_night }} €</span>
+        </li>
+        <li class="dato">
+            <span class="dato-etiqueta">Desayuno incluido</span>
+            <span class="dato-valor">{{ "Sí" if alojamiento.breakfast_included else "No" }}</span>
+        </li>
+        <li class="dato">
+            <span class="dato-etiqueta">Admite mascotas</span>
+            <span class="dato-valor">{{ "Sí" if alojamiento.pets_allowed else "No" }}</span>
         </li>
 
         {# Muestra las estrellas únicamente si existen (Sección 7.5) #}
         {% if alojamiento.stars %}
-        <li><strong>Categoría:</strong> {{ alojamiento.stars }} estrellas</li>
+        <li class="dato">
+            <span class="dato-etiqueta">Categoría</span>
+            <span class="dato-valor">
+                <span class="estrellas">{{ '★' * alojamiento.stars }}</span>
+                ({{ alojamiento.stars }} estrellas)
+            </span>
+        </li>
         {% endif %}
 
         {# Muestra detalles extra solo si la propiedad existe #}
-        {% if alojamiento.extra_details %}
-        <li><strong>Servicios destacados:</strong> {{ alojamiento.extra_details }}</li>
+        {% if alojamiento.additional_services %}
+        <li class="dato dato-ancho">
+            <span class="dato-etiqueta">Servicios destacados</span>
+            <span class="dato-valor">{{ alojamiento.additional_services }}</span>
+        </li>
         {% endif %}
     </ul>
 
@@ -38,6 +60,7 @@
     </p>
     {% endif %}
 
-    <p><a href="{{ url_for('listado_alojamientos') }}">← Volver al listado general de alojamientos</a></p>
+    <p><a class="enlace-volver" href="{{ url_for('listado_alojamientos') }}">← Volver al listado general de
+            alojamientos</a></p>
 </article>
 {% endblock %}

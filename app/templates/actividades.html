@@ -1,12 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Listado General de Actividades</h1>
-<ul>
+<h1 class="titulo-listado">Listado General de Actividades</h1>
+<p class="subtitulo-listado">Experiencias para vivir en cada destino.</p>
+
+<ul class="rejilla-tarjetas">
     {% for actividad in actividades %}
-    <li>
-        <a href="{{ url_for('detalle_actividad', actividad_id=actividad.id) }}">{{ actividad.name }}</a> - Destino: {{
-        actividad.destination_name }}
+    <li class="tarjeta">
+        {% if actividad.get('image') %}
+        <img class="tarjeta-imagen" src="{{ url_for('static', filename='images/' + actividad.image) }}"
+            alt="{{ actividad.name }}">
+        {% else %}
+        <div class="tarjeta-sin-imagen">🎒</div>
+        <pre>{{ actividad }}</pre>
+        {% endif %}
+
+        <div class="tarjeta-cuerpo">
+            <h2 class="tarjeta-titulo">
+                <a href="{{ url_for('detalle_actividad', actividad_id=actividad.id) }}">{{ actividad.name }}</a>
+            </h2>
+            <p class="tarjeta-meta">Destino: {{ actividad.destination_name }}</p>
+
+            <div class="etiquetas">
+                {% if actividad.duration_hours %}
+                <span class="etiqueta">{{ actividad.duration_hours }} h</span>
+                {% endif %}
+                {% if actividad.physical_difficulty %}
+                <span class="etiqueta">Dificultad {{ actividad.physical_difficulty }}</span>
+                {% endif %}
+                {% if actividad.minimum_age %}
+                <span class="etiqueta">+{{ actividad.minimum_age }} años</span>
+                {% endif %}
+            </div>
+
+            {% if actividad.price_per_person %}
+            <p class="tarjeta-precio">{{ actividad.price_per_person }} €/persona</p>
+            {% endif %}
+        </div>
     </li>
     {% endfor %}
 </ul>

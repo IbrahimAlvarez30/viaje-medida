@@ -1,11 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Listado General de Destinos</h1>
-<ul>
+<h1 class="titulo-listado">Listado General de Destinos</h1>
+<p class="subtitulo-listado">Explora los lugares a los que puedes viajar.</p>
+
+<ul class="rejilla-tarjetas">
     {% for destino in destinos %}
-    <li>
-        <a href="{{ url_for('detalle_destino', destino_id=destino.id) }}">{{ destino.name }}</a> - {{ destino.country }}
+    <li class="tarjeta">
+        {% if destino.get('image') %}
+        <img class="tarjeta-imagen" src="{{ url_for('static', filename='images/' + destino.image) }}"
+            alt="{{ destino.name }}">
+        {% else %}
+        <div class="tarjeta-sin-imagen">🌍</div>
+        {% endif %}
+
+        <div class="tarjeta-cuerpo">
+            <h2 class="tarjeta-titulo">
+                <a href="{{ url_for('detalle_destino', destino_id=destino.id) }}">{{ destino.name }}</a>
+            </h2>
+            <p class="tarjeta-meta">{{ destino.country }}</p>
+            <div class="etiquetas">
+                {% if destino.environment %}
+                <span class="etiqueta">{{ destino.environment | capitalize }}</span>
+                {% endif %}
+                {% if destino.high_season %}
+                <span class="etiqueta">Mejor época: {{ destino.high_season | capitalize }}</span>
+                {% endif %}
+            </div>
+        </div>
     </li>
     {% endfor %}
 </ul>

@@ -9,6 +9,7 @@ accommodations = [
         "pets_allowed": False,
         "stars": 4,
         "additional_services": "Baño termal privado en la habitación",
+        "image": "ryokan-tradicional-gion.jpg",
     },
     {
         "id": 2,
@@ -19,6 +20,7 @@ accommodations = [
         "breakfast_included": False,
         "pets_allowed": False,
         "stars": 2,
+        "image": "capsula-hostel-urban.jpg",
     },
     {
         "id": 3,
@@ -29,6 +31,7 @@ accommodations = [
         "breakfast_included": False,
         "pets_allowed": True,
         "additional_services": "Terraza con vistas al río",
+        "image": "bambu-arashiyama.jpg",
     },
     {
         "id": 4,
@@ -40,6 +43,7 @@ accommodations = [
         "pets_allowed": True,
         "stars": 4,
         "additional_services": "Acceso directo al muelle del fiordo",
+        "image": "rorbu-fjord-cabins.jpg",
     },
     {
         "id": 5,
@@ -51,6 +55,7 @@ accommodations = [
         "pets_allowed": False,
         "stars": 5,
         "additional_services": "Mirador acristalado en la azotea",
+        "image": "arctic-ligth-hotel.jpg",
     },
     {
         "id": 6,
@@ -60,6 +65,7 @@ accommodations = [
         "price_per_night": 55,
         "breakfast_included": False,
         "pets_allowed": True,
+        "image": "refugio-pescadores-svolvaer.jpg",
     },
     {
         "id": 7,
@@ -70,6 +76,7 @@ accommodations = [
         "breakfast_included": True,
         "pets_allowed": True,
         "stars": 2,
+        "image": "hostal-caribe-maya.jpg",
     },
     {
         "id": 8,
@@ -81,6 +88,7 @@ accommodations = [
         "pets_allowed": True,
         "stars": 3,
         "additional_services": "Funciona con energía solar",
+        "image": "eco-villas-tulum-road.jpg",
     },
     {
         "id": 9,
@@ -92,6 +100,7 @@ accommodations = [
         "pets_allowed": False,
         "stars": 5,
         "additional_services": "Club de playa privado",
+        "image": "grand-resort-riviera.jpg",
     },
     {
         "id": 10,
@@ -101,6 +110,7 @@ accommodations = [
         "price_per_night": 80,
         "breakfast_included": False,
         "pets_allowed": False,
+        "image": "loft-quinta-avenida.jpg",
     },
 ]
 

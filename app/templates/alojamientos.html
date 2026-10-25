@@ -1,12 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Listado General de Alojamientos</h1>
-<ul>
+<h1 class="titulo-listado">Listado General de Alojamientos</h1>
+<p class="subtitulo-listado">Encuentra dónde dormir en cada destino.</p>
+
+<ul class="rejilla-tarjetas">
     {% for alojamiento in alojamientos %}
-    <li>
-        <a href="{{ url_for('detalle_alojamiento', alojamiento_id=alojamiento.id) }}">{{ alojamiento.name }}</a> - Tipo:
-        {{ alojamiento.type | capitalize }}
+    <li class="tarjeta">
+        {% if alojamiento.get('image') %}
+        <img class="tarjeta-imagen" src="{{ url_for('static', filename='images/' + alojamiento.image) }}"
+            alt="{{ alojamiento.name }}">
+        {% else %}
+        <div class="tarjeta-sin-imagen">🏨</div>
+        {% endif %}
+
+        <div class="tarjeta-cuerpo">
+            <h2 class="tarjeta-titulo">
+                <a href="{{ url_for('detalle_alojamiento', alojamiento_id=alojamiento.id) }}">{{ alojamiento.name }}</a>
+            </h2>
+
+            {% if alojamiento.stars %}
+            <p class="tarjeta-meta estrellas">{{ '★' * alojamiento.stars }}</p>
+            {% endif %}
+
+            <div class="etiquetas">
+                <span class="etiqueta">Tipo: {{ alojamiento.type | capitalize }}</span>
+                {% if alojamiento.breakfast_included %}
+                <span class="etiqueta">Desayuno incluido</span>
+                {% endif %}
+                {% if alojamiento.pets_allowed %}
+                <span class="etiqueta">Admite mascotas</span>
+                {% endif %}
+            </div>
+
+            {% if alojamiento.price_per_night %}
+            <p class="tarjeta-precio">{{ alojamiento.price_per_night }} €/noche</p>
+            {% endif %}
+        </div>
     </li>
     {% endfor %}
 </ul>

@@ -1,68 +1,104 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="ficha-destino">
-    <h1>{{ destino.name }}</h1>
-
-    {# Muestra la imagen solo si el destino dispone de ella (Sección 7.5) #}
-    {% if destino.get('image') %}
-    <img src="{{ url_for('static', filename='images/' + destino.image) }}" alt="{{ destino.name }}"
-        style="max-width: 100%; height: auto;">
-    {% endif %}
-
-    <ul>
-        <li><strong>País:</strong> {{ destino.country }}</li>
-        <li><strong>Entorno natural:</strong> {{ destino.environment | capitalize }}</li>
-        <li><strong>Mejor época para viajar:</strong> {{ destino.high_season | capitalize }}</li>
-        <li>
-            <strong>Requisitos de visado:</strong>
-            {{ "Sí, requiere visado obligatorio para entrar" if destino.visa_required else "No requiere visado previo"
-            }}
-        </li>
-        {% if destino.additional_advice %}
-        <li><strong>Consejo para el viajero:</strong> {{ destino.additional_advice }}</li>
+<article class="ficha-destino detalle">
+    <div class="detalle-hero">
+        {# Muestra la imagen solo si el destino dispone de ella (Sección 7.5) #}
+        {% if destino.get('image') %}
+        <img src="{{ url_for('static', filename='images/' + destino.image) }}" alt="{{ destino.name }}">
+        {% else %}
+        <div class="detalle-hero-sin-imagen">🌍</div>
         {% endif %}
+        <h1 class="detalle-hero-titulo">{{ destino.name }}</h1>
+    </div>
+
+    <ul class="detalle-datos">
+        <li class="dato">
+            <span class="dato-etiqueta">País</span>
+            <span class="dato-valor">{{ destino.country }}</span>
+        </li>
+        <li class="dato">
+            <span class="dato-etiqueta">Entorno natural</span>
+            <span class="dato-valor">{{ destino.environment | capitalize }}</span>
+        </li>
+        <li class="dato">
+            <span class="dato-etiqueta">Mejor época para viajar</span>
+            <span class="dato-valor">{{ destino.high_season | capitalize }}</span>
+        </li>
+        <li class="dato">
+            <span class="dato-etiqueta">Requisitos de visado</span>
+            <span class="dato-valor">
+                {{ "Sí, requiere visado obligatorio para entrar" if destino.visa_required else "No requiere visado
+                previo" }}
+            </span>
+        </li>
     </ul>
+
+    {% if destino.additional_advice %}
+    <div class="aviso">
+        <strong>Consejo para el viajero:</strong> {{ destino.additional_advice }}
+    </div>
+    {% endif %}
 
     <hr>
 
     {# Apartado de Alojamientos asociados al destino #}
-    <h2>Alojamientos disponibles en {{ destino.name }}</h2>
+    <h2 class="detalle-seccion">Alojamientos disponibles en {{ destino.name }}</h2>
     {% if alojamientos %}
-    <ul>
+    <ul class="rejilla-tarjetas">
         {% for alojamiento in alojamientos %}
-        <li>
-            <a href="{{ url_for('detalle_alojamiento', alojamiento_id=alojamiento.id) }}">
-                {{ alojamiento.name }}
-            </a>
-            - {{ alojamiento.type | capitalize }}
-            ({{ alojamiento.price_per_night }} €/noche)
+        <li class="tarjeta">
+            {% if alojamiento.get('image') %}
+            <img class="tarjeta-imagen" src="{{ url_for('static', filename='images/' + alojamiento.image) }}"
+                alt="{{ alojamiento.name }}">
+            {% else %}
+            <div class="tarjeta-sin-imagen">🏨</div>
+            {% endif %}
+            <div class="tarjeta-cuerpo">
+                <h3 class="tarjeta-titulo">
+                    <a href="{{ url_for('detalle_alojamiento', alojamiento_id=alojamiento.id) }}">{{ alojamiento.name
+                        }}</a>
+                </h3>
+                <div class="etiquetas">
+                    <span class="etiqueta">{{ alojamiento.type | capitalize }}</span>
+                </div>
+                <p class="tarjeta-precio">{{ alojamiento.price_per_night }} €/noche</p>
+            </div>
         </li>
         {% endfor %}
     </ul>
     {% else %}
-    <p><em>Actualmente no tenemos alojamientos propios contratados en este destino.</em></p>
+    <p class="detalle-vacio">Actualmente no tenemos alojamientos propios contratados en este destino.</p>
     {% endif %}
 
     {# Apartado de Actividades asociadas al destino #}
-    <h2>Actividades disponibles en {{ destino.name }}</h2>
+    <h2 class="detalle-seccion">Actividades disponibles en {{ destino.name }}</h2>
     {% if actividades %}
-    <ul>
+    <ul class="rejilla-tarjetas">
         {% for actividad in actividades %}
-        <li>
-            <a href="{{ url_for('detalle_actividad', actividad_id=actividad.id) }}">
-                {{ actividad.name }}
-            </a>
-            - {{ actividad.duration_hours }}h
-            ({{ actividad.price_per_person }} €/persona)
+        <li class="tarjeta">
+            {% if actividad.get('image') %}
+            <img class="tarjeta-imagen" src="{{ url_for('static', filename='images/' + actividad.image) }}"
+                alt="{{ actividad.name }}">
+            {% else %}
+            <div class="tarjeta-sin-imagen">🎒</div>
+            {% endif %}
+            <div class="tarjeta-cuerpo">
+                <h3 class="tarjeta-titulo">
+                    <a href="{{ url_for('detalle_actividad', actividad_id=actividad.id) }}">{{ actividad.name }}</a>
+                </h3>
+                <div class="etiquetas">
+                    <span class="etiqueta">{{ actividad.duration_hours }} h</span>
+                </div>
+                <p class="tarjeta-precio">{{ actividad.price_per_person }} €/persona</p>
+            </div>
         </li>
         {% endfor %}
     </ul>
     {% else %}
-    <p><em>Actualmente no ofrecemos actividades propias en este destino.</em></p>
+    <p class="detalle-vacio">Actualmente no ofrecemos actividades propias en este destino.</p>
     {% endif %}
 
-    <br>
-    <p><a href="{{ url_for('listado_destinos') }}">← Volver al listado general de destinos</a></p>
+    <p><a class="enlace-volver" href="{{ url_for('listado_destinos') }}">← Volver al listado general de destinos</a></p>
 </article>
 {% endblock %}

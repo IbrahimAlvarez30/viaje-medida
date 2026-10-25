@@ -1,25 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="ficha-actividad">
-    <h1>{{ actividad.name }}</h1>
+<article class="ficha-actividad detalle">
+    <div class="detalle-hero">
+        {% if actividad.get('image') %}
+        <img src="{{ url_for('static', filename='images/' + actividad.image) }}" alt="{{ actividad.name }}">
+        {% else %}
+        <div class="detalle-hero-sin-imagen">🎒</div>
+        {% endif %}
+        <h1 class="detalle-hero-titulo">{{ actividad.name }}</h1>
+    </div>
 
-    <p><strong>Descripción:</strong> {{ actividad.description }}</p>
+    {% if actividad.description %}
+    <p class="detalle-descripcion"><strong>Descripción:</strong> {{ actividad.description }}</p>
+    {% endif %}
 
-    <ul>
-        <li><strong>Duración aproximada:</strong> {{ actividad.duration_hours }} horas</li>
-        <li><strong>Precio por persona:</strong> {{ actividad.price_per_person }} €</li>
+    <ul class="detalle-datos">
+        <li class="dato">
+            <span class="dato-etiqueta">Duración aproximada</span>
+            <span class="dato-valor">{{ actividad.duration_hours }} horas</span>
+        </li>
+        <li class="dato dato-precio">
+            <span class="dato-etiqueta">Precio por persona</span>
+            <span class="dato-valor">{{ actividad.price_per_person }} €</span>
+        </li>
 
         {# Control de campo opcional para dificultad física #}
-        {% if actividad.difficulty %}
-        <li><strong>Nivel de dificultad física:</strong> {{ actividad.difficulty | capitalize }}</li>
+        {% if actividad.physical_difficulty %}
+        <li class="dato">
+            <span class="dato-etiqueta">Nivel de dificultad física</span>
+            <span class="dato-valor">{{ actividad.physical_difficulty | capitalize }}</span>
+        </li>
         {% endif %}
 
         {# Control de campo opcional para edad mínima #}
-        {% if actividad.min_age %}
-        <li><strong>Edad mínima recomendada:</strong> {{ actividad.min_age }} años</li>
+        {% if actividad.minimum_age %}
+        <li class="dato">
+            <span class="dato-etiqueta">Edad mínima recomendada</span>
+            <span class="dato-valor">{{ actividad.minimum_age }} años</span>
+        </li>
         {% endif %}
     </ul>
+
+    {% if actividad.included_items %}
+    <h2 class="detalle-seccion">Qué incluye</h2>
+    <ul class="lista-incluye">
+        {% for item in actividad.included_items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
     <hr>
 
@@ -32,6 +62,7 @@
     </p>
     {% endif %}
 
-    <p><a href="{{ url_for('listado_actividades') }}">← Volver al listado general de actividades</a></p>
+    <p><a class="enlace-volver" href="{{ url_for('listado_actividades') }}">← Volver al listado general de
+            actividades</a></p>
 </article>
 {% endblock %}

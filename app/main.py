@@ -63,8 +63,7 @@ def listado_actividades():
         destino = obtener_destino_por_id(act["destination_id"])
         actividades_con_destino.append(
             {
-                "id": act["id"],
-                "name": act["name"],
+                **act,
                 "destination_name": destino["name"] if destino else "Desconocido",
             }
         )

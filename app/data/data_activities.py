@@ -6,6 +6,7 @@ activities = [
         "duration_hours": 2,
         "price_per_person": 30,
         "included_items": ["Degustación de dulces tradicionales matcha"],
+        "image": "ceremonia-del-te-en-gion.jpg",
     },
     {
         "id": 2,
@@ -15,6 +16,7 @@ activities = [
         "price_per_person": 40,
         "physical_difficulty": "media",
         "minimum_age": 10,
+        "image": "tour-nocturno-fushimi-inari.jpg",
     },
     {
         "id": 3,
@@ -24,6 +26,7 @@ activities = [
         "price_per_person": 65,
         "minimum_age": 12,
         "included_items": ["Todos los ingredientes", "Delantal", "Recetario impreso"],
+        "image": "clase-de-cocina-ramen-gyozas.jpg",
     },
     {
         "id": 4,
@@ -33,6 +36,7 @@ activities = [
         "price_per_person": 50,
         "physical_difficulty": "baja",
         "included_items": ["Alquiler de bicicleta eléctrica", "Casco"],
+        "image": "ruta-bicicleta-bosque-bambu.jpg",
     },
     {
         "id": 5,
@@ -42,6 +46,7 @@ activities = [
         "price_per_person": 45,
         "physical_difficulty": "baja",
         "included_items": ["Almuerzo tradicional especiado"],
+        "image": "ruta-especias-y-paseo-dhow.jpg",
     },
     {
         "id": 6,
@@ -52,6 +57,7 @@ activities = [
         "physical_difficulty": "media",
         "minimum_age": 8,
         "included_items": ["Tubo", "Gafas", "Aletas"],
+        "image": "snorkel-en-el-atolon-mnemba.jpg",
     },
     {
         "id": 7,
@@ -59,6 +65,7 @@ activities = [
         "destination_id": 3,
         "duration_hours": 2,
         "price_per_person": 20,
+        "image": "visita-guiada-por-stone-town.jpg",
     },
     {
         "id": 8,
@@ -73,6 +80,7 @@ activities = [
             "Linterna subacuática",
             "Traje de neopreno",
         ],
+        "image": "buceo-en-cenotes-sagrados.jpg",
     },
     {
         "id": 9,
@@ -82,6 +90,7 @@ activities = [
         "price_per_person": 55,
         "physical_difficulty": "baja",
         "included_items": ["Entradas al recinto arqueológico", "Transporte en autobús"],
+        "image": "excursion-a-las-ruinas-de-tulum.jpg",
     },
     {
         "id": 10,
@@ -91,6 +100,7 @@ activities = [
         "price_per_person": 65,
         "minimum_age": 18,
         "included_items": ["Barra libre de bebidas", "Aperitivos a bordo"],
+        "image": "paseo-en-catamaran-al-atardecer.jpg",
     },
 ]
 
