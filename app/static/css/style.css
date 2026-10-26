@@ -582,3 +582,39 @@ footer {
         flex-direction: column;
     }
 }
+
+/* ERRORES 404 */
+.error-404 {
+    max-width: 600px;
+    margin: 2rem auto 3rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.error-404-imagen {
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    margin-bottom: 1.2rem;
+}
+
+.error-404-codigo {
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--c-acento, #e07b1f);
+}
+
+.error-404 h1 {
+    margin: 0.3rem 0 0.8rem;
+    color: var(--c-principal, #0b5f7a);
+}
+
+.error-404-texto {
+    color: var(--c-suave, #5b6770);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 from data.data_destinations import (
     contar_destinos,
     obtener_destinos,
@@ -28,6 +28,11 @@ from forms import (
 )
 
 app = Flask(__name__)
+
+
+@app.errorhandler(404)
+def pagina_no_encontrada(error):
+    return render_template("404.html"), 404
 
 
 @app.route("/")
@@ -73,6 +78,8 @@ def listado_actividades():
 @app.route("/destino/<int:destino_id>")
 def detalle_destino(destino_id):
     destino = obtener_destino_por_id(destino_id)
+    if destino is None:
+        abort(404)
     alojamientos = obtener_alojamientos_por_destino(destino_id)
     actividades = obtener_actividades_por_destino(destino_id)
 
@@ -87,6 +94,8 @@ def detalle_destino(destino_id):
 @app.route("/alojamiento/<int:alojamiento_id>")
 def detalle_alojamiento(alojamiento_id):
     alojamiento = obtener_alojamiento_por_id(alojamiento_id)
+    if alojamiento is None:
+        abort(404)
     destino = obtener_destino_por_id(alojamiento["destination_id"])
     return render_template(
         "alojamiento_detalle.html", alojamiento=alojamiento, destino=destino
@@ -96,6 +105,8 @@ def detalle_alojamiento(alojamiento_id):
 @app.route("/actividad/<int:actividad_id>")
 def detalle_actividad(actividad_id):
     actividad = obtener_actividad_por_id(actividad_id)
+    if actividad is None:
+        abort(404)
     destino = obtener_destino_por_id(actividad["destination_id"])
     return render_template(
         "actividad_detalle.html", actividad=actividad, destino=destino
